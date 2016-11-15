@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        /*H*/
+        $flights = App\Image::where('user_id', $user = Auth::user()->name)
+               ->orderBy('name', 'desc')
+               ->take(10)
+               ->get();
         return view('home');
     }
 }

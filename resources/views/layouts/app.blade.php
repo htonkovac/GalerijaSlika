@@ -71,6 +71,17 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <!-- ovdje pocinje moj kod -->
+                                    <li>
+                                        <a href="{{ url('/upload') }}">
+                                            Upload Image
+                                        </a>
+
+                                        <form id="logout-form" action="{{ url('/upload') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                  
                                 </ul>
                             </li>
                         @endif
