@@ -67,7 +67,7 @@
                                           My Gallery
                                         </a>
 
-                                        <form id="logout-form" action="{{ url('/home') }}" method="POST" style="display: none;">
+                                        <form id="home-form" action="{{ url('/home') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
@@ -79,7 +79,7 @@
                                             Upload Image
                                         </a>
 
-                                        <form id="logout-form" action="{{ url('/upload') }}" method="POST" style="display: none;">
+                                        <form id="upload-form" action="{{ url('/upload') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
