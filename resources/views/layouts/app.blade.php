@@ -63,7 +63,7 @@
                                   
                                     <!-- dropdown menu -->
                                         <li>
-                                        <a href="{{ url('/home') }}">
+                                        <a href="{{ url('/'.Auth::user()->name) }}">
                                           My Gallery
                                         </a>
 

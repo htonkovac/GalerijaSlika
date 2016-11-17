@@ -13,7 +13,7 @@ class HomeController extends Controller
      * @return void
      */
     public function __construct()
-    {
+    {        
         $this->middleware('auth');
     }
 
@@ -24,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
+        //var_dump(  \Auth::user()  );  exit;
         
         $images = Image::where('user_id', $user = Auth::user()->id)
                ->get();
