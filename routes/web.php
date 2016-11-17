@@ -1,4 +1,5 @@
 <?php
+//use Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,20 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/upload', 'UserController@uploadForm');
 Route::post('/upload', 'UserController@upload');
-/* popravi to http://stackoverflow.com/questions/30191330/laravel-5-how-to-access-image-uploaded-in-storage-within-view
+//popravi to http://stackoverflow.com/questions/30191330/laravel-5-how-to-access-image-uploaded-in-storage-within-view
 Route::get('images/{filename}', function ($filename)
 {
-    return Image::make(storage_path() . '/' . $filename)->response();
+    $path = storage_path('app/uploads') . '/' . $filename;
+
+    if(!File::exists($path)){ abort(404);}
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
 });
- * */
+
  

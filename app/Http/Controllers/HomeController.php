@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Image;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,11 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        /*H*/
-        $flights = App\Image::where('user_id', $user = Auth::user()->name)
-               ->orderBy('name', 'desc')
-               ->take(10)
+        
+        $images = Image::where('user_id', $user = Auth::user()->id)
                ->get();
-        return view('home');
+     
+       // dd($images);exit;
+         return view('home')->withImages($images);   
     }
 }

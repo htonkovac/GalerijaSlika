@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+  <!--  <div class="row">
+        <div class="col-md-8 col-md-offset-2">-->
         @section('content')
 
           <!-- Page Content -->
@@ -21,7 +21,15 @@
                 </a>
             </div>
             <!-- Iterator here-->
-        
+            
+         @foreach ($images as $image)  
+          <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="{{url('images/'.$image->filename)}}" alt="">
+                </a>
+            </div>     
+         @endforeach
+         
         </div>
         @endsection
     </div>

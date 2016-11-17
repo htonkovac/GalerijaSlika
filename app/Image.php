@@ -18,6 +18,6 @@ class Image extends Model
      *
      * @var array
      */
-    protected $fillable = ['filename', 'user', 'is_private'];
+    protected $fillable = ['filename', 'user', 'visibility'];
 
 }

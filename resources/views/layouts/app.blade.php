@@ -60,7 +60,33 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                  
+                                    <!-- dropdown menu -->
+                                        <li>
+                                        <a href="{{ url('/home') }}">
+                                          My Gallery
+                                        </a>
+
+                                        <form id="logout-form" action="{{ url('/home') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                    
+                                    
+                                    
                                     <li>
+                                        <a href="{{ url('/upload') }}">
+                                            Upload Image
+                                        </a>
+
+                                        <form id="logout-form" action="{{ url('/upload') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                      
+                                    
+                                    <!-- ovo je logout -->
+                                      <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -71,17 +97,7 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                    <!-- ovdje pocinje moj kod -->
-                                    <li>
-                                        <a href="{{ url('/upload') }}">
-                                            Upload Image
-                                        </a>
-
-                                        <form id="logout-form" action="{{ url('/upload') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                  
+                                    
                                 </ul>
                             </li>
                         @endif
