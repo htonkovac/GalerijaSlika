@@ -24,7 +24,7 @@ class UserController extends Controller
          return view('upload');//, ['user' => User::findOrFail($id)]);
     }
     
-    public function upload(Request $request)
+    public function uploadImage(Request $request)
     {
         
         $user = Auth::user();
@@ -86,5 +86,22 @@ class UserController extends Controller
           $images = Image::where('user_id', Auth::user()->id)
                ->get();
         return view('manager')->withImages($images);
+    }
+    
+    public function updateImage(Request $request)
+    {
+        if(isset($request->deleteme))
+        {
+            Image::destroy($request->imageId);
+            return redirect('/manage');
+        }
+        $image = Image::find($request->imageId);
+
+        $image->visibility=$request->isHidden;
+        $image->caption=$request->caption;
+
+        $image->save();
+        
+            return redirect('/manage');
     }
 }

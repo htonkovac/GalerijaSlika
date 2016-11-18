@@ -3,11 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6 col-md-offset-4">
         @section('content')
 
           <!-- Page Content -->
           <div class="container">
+                      <div class="col-md-6 col-md-offset-1">
+
     <div class="row">
           <div class="form-group">
 <form action="{{ url('/upload') }}" method="post" enctype="multipart/form-data">
@@ -50,7 +52,8 @@ Filter?</label>
      <button type="submit" class="btn btn-primary">Submit</button>
 </form>
           </div>
-    </div>
+          </div>
+          </div>
           </div>
           @endsection
     </div>

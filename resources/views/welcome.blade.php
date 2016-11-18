@@ -6,15 +6,13 @@
         <div class="col-md-8 col-md-offset-2">-->
         @section('content')
         
-        
-            <div class="content">
-                <div class="title m-b-md">
-                    <h1>Galerija Osijek</h1>
-                </div>
-
+        <div class="container">
+                      <div class="col-md-7 col-md-offset-2">
+                <img src={{url('/galos.png')}} osijek.png">
                 
                 @endsection
-    </div>
+        </div>
+        </div>
 </div>
 @endsection
 
