@@ -15,11 +15,6 @@
                 <h1 class="page-header">Moja Galerija </h1>
             </div>
 
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="" style="width:400;height:300;">
-                </a>
-            </div>
             <!-- Iterator here-->
             
          @foreach ($images as $image)  

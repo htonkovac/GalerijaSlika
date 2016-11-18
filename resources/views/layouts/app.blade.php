@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+  <!--  <link href="{{url('/css/app.css')}}" rel="stylesheet">-->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -84,6 +84,15 @@
                                         </form>
                                     </li>
                       
+                                     <li>
+                                        <a href="{{ url('/manage') }}">
+                                            Manage Gallery
+                                        </a>
+
+                                        <form id="manage-form" action="{{ url('/manage') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
                                     
                                     <!-- ovo je logout -->
                                       <li>
@@ -110,7 +119,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+   <!-- <script src="{{url('js/app.js')}}"></script>-->
       <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

@@ -18,23 +18,9 @@ Route::get('/', function () {
 
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index'); //must die
 Route::get('/upload', 'UserController@uploadForm');
 Route::post('/upload', 'UserController@upload');
-
-Route::get('images/{filename}', function ($filename)
-{
-    $path = storage_path('app/uploads') . '/' . $filename;
-
-    if(!File::exists($path)){ abort(404);}
-
-    $file = File::get($path);
-    $type = File::mimeType($path);
-
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
-
-    return $response;
-});
+Route::get('/manage','UserController@manage');
+Route::get('images/{filename}','ImageController@showImage');
 Route::get('/{username}','UserController@show');

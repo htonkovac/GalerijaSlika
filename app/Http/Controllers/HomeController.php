@@ -25,12 +25,9 @@ class HomeController extends Controller
     public function index()
     {
         
-        //var_dump(  \Auth::user()  );  exit;
-        
         $images = Image::where('user_id', $user = Auth::user()->id)
                ->get();
      
-       // dd($images);exit;
          return view('home')->withImages($images);   
     }
 }

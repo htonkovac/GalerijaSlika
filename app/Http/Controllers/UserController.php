@@ -26,26 +26,23 @@ class UserController extends Controller
     
     public function upload(Request $request)
     {
-        //DB::insert('insert into images (id, name) values (?, ?)', [$_POST['caption'], $_POST['isHidden']]);
         
         $user = Auth::user();
         $filter = isset($request->filter) ? '\\PhpAcademy\Image\Filters\\' . $request->filter . 'Filter' : '';
         
-        //var_dump($filter); exit;
         
-        $ext=$request->fileToUpload/*->File*/->extension();
+        $ext=$request->fileToUpload->extension();
         
         $image= new Image();
         $image->filename=time().".".$ext;
         $image->user_id = $user->id;
+        $image->caption = $request->caption;
         $image->visibility = isset($request->isHidden)?$request->isHidden:'1';
             if ($request->hasFile('fileToUpload')) {
                 $file = $request->fileToUpload->getPathName();
-//var_dump($file->getPathName()); exit;
                 
         $path = $request->fileToUpload->storeAs('uploads',$image->filename);
 
-        //var_dump($path); exit;
         if($filter){
         $imageman = ImageManager::make(storage_path('app/'.$path));
         $imageman->filter(new $filter());
@@ -74,10 +71,20 @@ class UserController extends Controller
             $images = Image::where('user_id',$user->id)->where('visibility','1')
                ->get();
         }
-       // dd($images);exit;
          return view('home')->withImages($images);  
         
         
     }
+    
+    public function manage()
+    {
+        if(Auth::guest())
+        {
+            redirect('login');
+        }
+        
+          $images = Image::where('user_id', Auth::user()->id)
+               ->get();
+        return view('manager')->withImages($images);
+    }
 }
-//http://stackoverflow.com/questions/30191330/laravel-5-how-to-access-image-uploaded-in-storage-within-view
