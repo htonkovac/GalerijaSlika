@@ -11,20 +11,19 @@
                       <div class="col-md-6 col-md-offset-1">
 
     <div class="row">
-          <div class="form-group">
-<form action="{{ url('/upload') }}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+    <form action="{{ url('/upload') }}" method="post" enctype="multipart/form-data">
     
     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
     
-     <div class="form-group">
+    <div class="form-group">
     <label> Select image to upload: </label>
     <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
-     </div>
+    </div>
     
     <div class="form-check">
-    <label class="form-check-label">     <input class="form-check-input" type="checkbox" name="isHidden" value="0"> 
-Hidden?</label>
-     </div>
+    <label class="form-check-label">     <input class="form-check-input" type="checkbox" name="isHidden" value="0"> Hidden?</label>
+    </div>
     
     <!--<div class="form-check">
     <label class="form-check-label">     <input class="form-check-input" type="checkbox" name="filter" value="Sepia"> 
@@ -44,11 +43,13 @@ Filter?</label>
         <option value="Dreamy">Dreamy</option>
         <option value="Sepia">Sepia</option>
         <option value="SynCity">SynCity</option>
-</select>
+    </select>
+    
      <div class="form-group">
-   <label>  Caption: </label>
-    <input  class="form-control" type="text" name="caption">
+         <label>  Caption: </label>
+         <input  class="form-control" type="text" name="caption">
      </div>
+    
      <button type="submit" class="btn btn-primary">Submit</button>
 </form>
           </div>

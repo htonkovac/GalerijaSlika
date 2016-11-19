@@ -11,8 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-  <!--  <link href="{{url('/css/app.css')}}" rel="stylesheet">-->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lightbox.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -37,7 +37,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                       Galerija Osijek
+                     <img src={{url('/thumb-galos-final.png')}} style="position: relative; top: -15px;">
                     </a>
                 </div>
 
@@ -118,10 +118,11 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
-   <!-- <script src="{{url('js/app.js')}}"></script>-->
       <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    
+    <!-- Scripts -->
+   <script src="js/lightbox.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

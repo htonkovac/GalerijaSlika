@@ -24,10 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $username=Auth::user()->name;
         
         $images = Image::where('user_id', $user = Auth::user()->id)
                ->get();
      
-         return view('home')->withImages($images);   
+         return view('home')->withImages($images)->withUsername($username);   
     }
 }

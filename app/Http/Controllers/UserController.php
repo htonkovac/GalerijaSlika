@@ -52,7 +52,7 @@ class UserController extends Controller
         }
 
          $image->save();
-         return redirect('/home');
+         return redirect(Auth::user()->name);
     }
     
     public function show($username)
@@ -71,7 +71,7 @@ class UserController extends Controller
             $images = Image::where('user_id',$user->id)->where('visibility','1')
                ->get();
         }
-         return view('home')->withImages($images);  
+         return view('home')->withImages($images)->withUsername($username);  
         
         
     }
