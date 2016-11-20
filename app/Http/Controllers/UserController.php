@@ -13,14 +13,17 @@ use PhpAcademy\Image\Filters;
 
 class UserController extends Controller
 {
-     public function __construct()
-    {
+ 
+        public function __construct()
+    {        
         $this->middleware('auth');
     }
+
 
     //
     public function uploadForm()
     {
+        
          return view('upload');//, ['user' => User::findOrFail($id)]);
     }
     
@@ -28,7 +31,7 @@ class UserController extends Controller
     {
         
         $user = Auth::user();
-        $filter = isset($request->filter) ? '\\PhpAcademy\Image\Filters\\' . $request->filter . 'Filter' : '';
+        $filter = ($request->filter!='') ? '\\PhpAcademy\Image\Filters\\' . $request->filter . 'Filter' : '';
         
         
         $ext=$request->fileToUpload->extension();
@@ -38,58 +41,38 @@ class UserController extends Controller
         $image->user_id = $user->id;
         $image->caption = $request->caption;
         $image->visibility = isset($request->isHidden)?$request->isHidden:'1';
-            if ($request->hasFile('fileToUpload')) {
-                $file = $request->fileToUpload->getPathName();
-                
+            
         $path = $request->fileToUpload->storeAs('uploads',$image->filename);
-
+        
+        //apply filter if necessary
         if($filter){
         $imageman = ImageManager::make(storage_path('app/'.$path));
         $imageman->filter(new $filter());
         $imageman->save();
         }
         
-        }
-
+        //if the image is visible update last_uploaded_at column of the users DB
+         if($image->visibility) {
+         $user->last_uploaded_at=\Carbon\Carbon::now();
+         $user->save();
+         }
+         
+         
          $image->save();
-         return redirect(Auth::user()->name);
-    }
-    
-    public function show($username)
-    {
-        $user = User::where('name',$username)->first();
-        
-        if(!$user) {
-            abort(404);
-        }
-        
-        if(Auth::user()== $user)
-        {
-            $images = Image::where('user_id', $user->id)
-               ->get();
-        } else {
-            $images = Image::where('user_id',$user->id)->where('visibility','1')
-               ->get();
-        }
-         return view('home')->withImages($images)->withUsername($username);  
-        
-        
+         return redirect($user->name);
     }
     
     public function manage()
     {
-        if(Auth::guest())
-        {
-            redirect('login');
-        }
-        
-          $images = Image::where('user_id', Auth::user()->id)
-               ->get();
+       
+        $images = Image::where('user_id', Auth::user()->id)
+                ->get();
         return view('manager')->withImages($images);
     }
     
     public function updateImage(Request $request)
     {
+        
         if(isset($request->deleteme))
         {
             Image::destroy($request->imageId);
@@ -104,4 +87,6 @@ class UserController extends Controller
         
             return redirect('/manage');
     }
+    
+    
 }

@@ -11,6 +11,11 @@ namespace App\Http\Controllers;
 
 use File;
 use Response;
+
+use Auth;
+use App\User;
+use App\Image;
+
 /**
  * Description of ImageController
  * 
@@ -20,17 +25,51 @@ use Response;
 class ImageController {
     //put your code here
     function showImage($filename)
-{
-    $path = storage_path('app/uploads') . '/' . $filename;
+    {
+        $path = storage_path('app/uploads') . '/' . $filename;
 
-    if(!File::exists($path)){ abort(404);}
+        if(!File::exists($path)){ abort(404);}
 
-    $file = File::get($path);
-    $type = File::mimeType($path);
+        $file = File::get($path);
+        $type = File::mimeType($path);
 
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
 
-    return $response;
-}
+        return $response;
+    }
+
+
+
+    public function showGallery($username)
+    {
+         $user = User::where('name',$username)->first();
+        
+        if(!$user) {
+            abort(404);
+        }
+        
+        if(Auth::guest())
+        {
+            $images = Image::where('user_id',$user->id)->where('visibility','1')
+               ->get();
+           // dd(Image::where('user_id',$username));
+          return view('home')->withImages($images)->withUsername($username);     
+        }
+       
+        
+        
+        if(Auth::user()== $user)
+        {
+            $images = Image::where('user_id', $user->id)
+               ->get();
+        } else {
+            $images = Image::where('user_id',$user->id)->where('visibility','1')
+               ->get();
+        }
+         return view('home')->withImages($images)->withUsername($username);  
+        
+        
+    }
+    
 }

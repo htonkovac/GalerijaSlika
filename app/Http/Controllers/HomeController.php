@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Image;
-use Auth;
+use App\User;
+
 class HomeController extends Controller
 {
     /**
@@ -12,23 +12,20 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {        
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+  
+    
+    public function getUsers()
     {
-        $username=Auth::user()->name;
-        
-        $images = Image::where('user_id', $user = Auth::user()->id)
-               ->get();
-     
-         return view('home')->withImages($images)->withUsername($username);   
+       $users = User::select('name','last_uploaded_at')->orderBy('last_uploaded_at','desc')->take(5)->get()->toArray(); 
+    
+       foreach($users as &$user) {
+           
+           $user['time']= \Carbon\Carbon::createFromTimeStamp(strtotime($user['last_uploaded_at']))->diffForHumans();
+           unset($user['last_uploaded_at']);
+       }
+       
+       
+       return view('welcome')->withUsers($users);
+
     }
 }

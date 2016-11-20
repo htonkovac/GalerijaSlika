@@ -19,7 +19,7 @@
             <div class="row">
                 <?php $counter=0 ?>
          @foreach ($images as $image)  
-                 <?php $counter++ ?>
+                 <?php $counter++;?>
 
           <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#">

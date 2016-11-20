@@ -12,16 +12,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@getUsers');//makes no sense
 
 
 Auth::routes();
-Route::get('/home', 'HomeController@index'); //must die
+//Route::get('/home', 'HomeController@index'); //must die
 Route::get('/upload', 'UserController@uploadForm');
 Route::post('/upload', 'UserController@uploadImage');
 Route::get('/manage','UserController@manage');
 Route::post('/manage','UserController@updateImage');
 Route::get('images/{filename}','ImageController@showImage');
-Route::get('/{username}','UserController@show');
+Route::get('/{username}','ImageController@showGallery');
