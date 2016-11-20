@@ -22,7 +22,7 @@ use App\Image;
  *
  * @author Hrvoje Tonkovac
  */
-class ImageController {
+class GalleryController {
     //put your code here
     function showImage($filename)
     {
@@ -62,12 +62,12 @@ class ImageController {
         if(Auth::user()== $user)
         {
             $images = Image::where('user_id', $user->id)
-               ->get();
+               ->paginate(8);
         } else {
             $images = Image::where('user_id',$user->id)->where('visibility','1')
-               ->get();
+               ->paginate(8);
         }
-         return view('home')->withImages($images)->withUsername($username);  
+         return view('gallery')->withImages($images)->withUsername($username);  
         
         
     }

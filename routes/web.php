@@ -21,5 +21,5 @@ Route::get('/upload', 'UserController@uploadForm');
 Route::post('/upload', 'UserController@uploadImage');
 Route::get('/manage','UserController@manage');
 Route::post('/manage','UserController@updateImage');
-Route::get('images/{filename}','ImageController@showImage');
-Route::get('/{username}','ImageController@showGallery');
+Route::get('images/{filename}','GalleryController@showImage');
+Route::get('/{username}','GalleryController@showGallery');

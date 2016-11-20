@@ -66,7 +66,7 @@ class UserController extends Controller
     {
        
         $images = Image::where('user_id', Auth::user()->id)
-                ->get();
+                ->paginate(6);
         return view('manager')->withImages($images);
     }
     
