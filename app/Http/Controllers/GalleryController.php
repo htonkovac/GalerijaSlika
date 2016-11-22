@@ -23,7 +23,7 @@ use App\Image;
  * @author Hrvoje Tonkovac
  */
 class GalleryController {
-    //put your code here
+
     function showImage($filename)
     {
         $path = storage_path('app/uploads') . '/' . $filename;
@@ -48,17 +48,7 @@ class GalleryController {
         if(!$user) {
             abort(404);
         }
-        
-       /* if(Auth::guest())
-        {
-            $images = Image::where('user_id',$user->id)->where('visibility','1')
-               ->get();
-           // dd(Image::where('user_id',$username));
-          return view('gallery')->withImages($images)->withUsername($username);     
-        }
-       */
-        
-        
+
         if(Auth::user()== $user)
         {
             $images = Image::where('user_id', $user->id)

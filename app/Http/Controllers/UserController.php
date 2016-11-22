@@ -24,7 +24,7 @@ class UserController extends Controller
     public function uploadForm()
     {
         
-         return view('upload');//, ['user' => User::findOrFail($id)]);
+         return view('upload');
     }
     
     public function uploadImage(Request $request)
