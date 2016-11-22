@@ -31,34 +31,40 @@ class UserController extends Controller
     {
         
         $user = Auth::user();
-        $filter = ($request->filter!='') ? '\\PhpAcademy\Image\Filters\\' . $request->filter . 'Filter' : '';
-        
-        
+        $filter = ($request->filter!='') ? '\\PhpAcademy\Image\Filters\\' . $request->filter . 'Filter' : '';        
         $ext=$request->fileToUpload->extension();
         
+        
+        //storing image data into the database
         $image= new Image();
-        $image->filename=time().".".$ext;
+        $image->filename='img_'.time().'.'.$ext;
         $image->user_id = $user->id;
         $image->caption = $request->caption;
-        $image->visibility = isset($request->isHidden)?$request->isHidden:'1';
-            
-        $path = $request->fileToUpload->storeAs('uploads',$image->filename);
-        
-        //apply filter if necessary
-        if($filter){
-        $imageman = ImageManager::make(storage_path('app/'.$path));
-        $imageman->filter(new $filter());
-        $imageman->save();
-        }
+        $image->visibility = isset($request->isHidden)?'0':'1';
+        $image->save();
         
         //if the image is visible update last_uploaded_at column of the users DB
          if($image->visibility) {
          $user->last_uploaded_at=\Carbon\Carbon::now();
          $user->save();
          }
-         
-         
-         $image->save();
+
+        //saving the image and storing the $path
+        $path = $request->fileToUpload->storeAs('uploads',$image->filename);
+
+        $imageman = ImageManager::make(storage_path('app/'.$path));
+
+        //apply filter if necessary
+        if($filter){
+        $imageman->filter(new $filter());
+        $imageman->save();
+        }
+
+        //creating thumbnail
+        $imageman->fit(293,293)->save(storage_path('app/uploads/thumb_'.$image->filename));
+
+        
+                  
          return redirect($user->name);
     }
     

@@ -49,14 +49,14 @@ class GalleryController {
             abort(404);
         }
         
-        if(Auth::guest())
+       /* if(Auth::guest())
         {
             $images = Image::where('user_id',$user->id)->where('visibility','1')
                ->get();
            // dd(Image::where('user_id',$username));
-          return view('home')->withImages($images)->withUsername($username);     
+          return view('gallery')->withImages($images)->withUsername($username);     
         }
-       
+       */
         
         
         if(Auth::user()== $user)

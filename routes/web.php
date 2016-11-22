@@ -16,10 +16,12 @@ Route::get('/', 'HomeController@getUsers');//makes no sense
 
 
 Auth::routes();
-//Route::get('/home', 'HomeController@index'); //must die
+
 Route::get('/upload', 'UserController@uploadForm');
 Route::post('/upload', 'UserController@uploadImage');
+
 Route::get('/manage','UserController@manage');
 Route::post('/manage','UserController@updateImage');
+
 Route::get('images/{filename}','GalleryController@showImage');
 Route::get('/{username}','GalleryController@showGallery');
