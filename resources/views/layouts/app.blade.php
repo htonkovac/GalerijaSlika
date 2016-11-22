@@ -13,7 +13,8 @@
     <!-- Styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/lightbox.css" rel="stylesheet">
-
+    <link href="css/searchbar.css" rel="stylesheet">
+    <link href="css/like.css" rel="stylesheet">
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -45,6 +46,18 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        <li>
+                    <div class="col-md-6 col-md-offset-5">
+                    <div class="row">
+                    <div class="search">
+                        <form action="{{ url('/search') }}" method="get">
+                            <input type="text" name="query" class="form-control input-sm" maxlength="64" placeholder="Search by title" />
+                            <button type="submit" id ="btn" class="btn btn-primary btn-sm">Search</button>
+                        </form>
+                    </div>
+                    </div>
+                    </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -1,6 +1,5 @@
 <?php
 //use Image;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,5 +22,9 @@ Route::post('/upload', 'UserController@uploadImage');
 Route::get('/manage','UserController@manage');
 Route::post('/manage','UserController@updateImage');
 
+Route::get('/search','GalleryController@search');
+
 Route::get('images/{filename}','GalleryController@showImage');
 Route::get('/{username}','GalleryController@showGallery');
+
+

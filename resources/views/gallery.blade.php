@@ -18,6 +18,7 @@
                 <a class="thumbnail"  href="{{ url('images/'.$image->filename) }}" data-lightbox="mygallery" data-title="{{ $image->caption }}">
                     <img class="img-responsive" src="{{ url('images/thumb_'.$image->filename) }}" alt="" style="width:293px;height:293px;">
                 </a>
+                <button id="like" class="btn btn-primary">LAJKUJ</button> <span id="like" style="float: right;">50 lajkova</span>
             </div>     
          @endforeach
         
