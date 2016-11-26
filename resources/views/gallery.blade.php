@@ -18,7 +18,7 @@
                 <a class="thumbnail"  href="{{ url('images/'.$image->filename) }}" data-lightbox="mygallery" data-title="{{ $image->caption }}">
                     <img class="img-responsive" src="{{ url('images/thumb_'.$image->filename) }}" alt="" style="width:293px;height:293px;">
                 </a>
-                <form action="{{url('like/'.$image['id'])}}" ><button id="like" class="btn btn-primary">LIKE</button></form> <span id="like" style="float: right;">50 lajkova</span>
+                <form action="{{url('like/'.$image['id'])}}" ><button id="like" class="btn btn-primary">{{$image->didAuthLike()}}LIKE</button></form> <span id="like" style="float: right;">{{$image->numberOfLikes()}} likes</span>
             </div>     
          @endforeach
         

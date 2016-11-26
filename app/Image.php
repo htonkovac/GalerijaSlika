@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Auth;
 class Image extends Model
 {
     /**
@@ -20,4 +20,24 @@ class Image extends Model
      */
     protected $fillable = ['filename', 'user', 'visibility'];
 
+    public function numberOfLikes()
+    {
+      return Like::where('image_id','=',$this->id)->get()->count();
+    }
+    
+    public function didAuthLike()
+    {
+        $user = Auth::user();
+        if(!$user)
+        {
+            return '';
+        }
+        $like = Like::where('image_id','=',$this->id)->where('user_id','=',$user->id)->first();
+        
+        if($like) {
+            return 'UN';
+        } else { 
+            return '';
+        }
+    }
 }
