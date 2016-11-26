@@ -15,6 +15,7 @@ use Response;
 use Auth;
 use App\User;
 use App\Image;
+use App\Like;
 use Illuminate\Http\Request;
 
 /**
@@ -58,6 +59,7 @@ class GalleryController {
             $images = Image::where('user_id',$user->id)->where('visibility','1')
                ->paginate(8);
         }
+        //dd($images);
          return view('gallery')->withImages($images)->withUsername($username);  
         
         
@@ -84,4 +86,27 @@ class GalleryController {
               
         return view('searchResults')->withImages($images);
     }
+    
+    public function likeImage($imgId)
+    {
+        
+        $user = Auth::user(); 
+        if(!Auth::user())
+        {
+            return redirect('login');
+        } else {
+            $userId = $user->id;
+        }
+     
+        $like =Like::where('user_id','=',$userId)->where('image_id','=',$imgId);
+        
+        if($like->count()) {
+            $like->first()->delete();
+            } else {
+           Like::create(['user_id'=>$userId,'image_id'=>$imgId]);
+        }
+        
+        return \Redirect::back();
+    }
+    
 }

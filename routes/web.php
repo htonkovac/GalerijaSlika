@@ -23,7 +23,7 @@ Route::get('/manage','UserController@manage');
 Route::post('/manage','UserController@updateImage');
 
 Route::get('/search','GalleryController@search');
-
+Route::get('/like/{imgID}','GalleryController@likeImage');
 Route::get('images/{filename}','GalleryController@showImage');
 Route::get('/{username}','GalleryController@showGallery');
 

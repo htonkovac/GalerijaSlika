@@ -5,6 +5,8 @@
 Homestead.json
 Homestead.yaml
 .env
-/nbproject/private/
+/nbproject/
 public/deleteme.pls
 todo.md
+public/DigitalniRaspored.php
+nbproject
