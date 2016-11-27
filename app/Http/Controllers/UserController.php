@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Image;
 use Auth;
 use App\User;
-//Za slike
 
 use Intervention\Image\ImageManagerStatic as ImageManager;
 use PhpAcademy\Image\Filters; 

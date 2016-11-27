@@ -22,7 +22,7 @@ class Image extends Model
 
     public function numberOfLikes()
     {
-      return Like::where('image_id','=',$this->id)->get()->count();
+      return Like::where('image_id','=',$this->id)->count();
     }
     
     public function didAuthLike()
