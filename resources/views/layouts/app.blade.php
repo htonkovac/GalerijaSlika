@@ -51,7 +51,7 @@
                     <div class="row">
                     <div class="search">
                         <form action="{{ url('/search') }}" method="get">
-                            <input type="text" name="query" class="form-control input-sm" maxlength="64" placeholder="Search by title" />
+                            <input type="text" name="query" class="form-control input-sm" maxlength="64" placeholder="Search most liked by title" />
                             <button type="submit" id ="btn" class="btn btn-primary btn-sm">Search</button>
                         </form>
                     </div>
