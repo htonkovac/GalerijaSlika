@@ -10,7 +10,7 @@
 
     <div class="row">
 
-       <div class ="col-md-5 col-md-offset-1">
+       <div class ="col-md-5 col-md-offset-2">
             <div class="panel panel-info">
             <div class="panel-heading">User who recently uploaded a photo:</div>
             <div class="panel-body">
@@ -22,12 +22,6 @@
             </div>
        </div>
         
-    <div class ="col-md-5 col-md-offset-1">
-        <div class="panel panel-info">
-            <div class="panel-heading">Panel with panel-info class</div>
-            <div class="panel-body">Panel Content</div>
-        </div>
-   </div>
    </div>
 
 </div>

@@ -18,7 +18,7 @@ class CreateLikesTable extends Migration
             $table->integer('user_id', false, true); //autoincrement i unsigned
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('image_id', false, true); //autoincrement i unsigned
-            $table->foreign('image_id')->references('id')->on('images');
+            $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
             $table->unique(array('user_id','image_id'));
             $table->timestamps();
         });

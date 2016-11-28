@@ -90,7 +90,7 @@ class UserController extends Controller
 
         $image->save();
         
-            return redirect('/manage');
+            return \Redirect::back();
     }
     
     
