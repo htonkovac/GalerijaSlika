@@ -67,23 +67,14 @@ class GalleryController {
     
     public function search(Request $request)
     {
-        
-        
-
      $request = $request->input('query');
         
         $images = Image::where('visibility','=','1')->where('caption','like','%'.$request.'%')
-                ->select('filename','caption','user_id')->get()->toArray();
- 
+                ->select('filename','caption','user_id','id')->get()
+                ->sortByDesc(function ($image) {
+                                        return $image->numberOfLikes();
+                                        });
 
-       foreach($images as &$image)
-        {
-
-          $name = User::where('id','=',$image['user_id'])->firstOrFail()->name;
-          $image['name']=$name;
-          unset($image['user_id']);
-        }
-              
         return view('searchResults')->withImages($images);
     }
     

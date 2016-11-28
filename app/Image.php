@@ -20,6 +20,7 @@ class Image extends Model
      */
     protected $fillable = ['filename', 'user', 'visibility'];
 
+    
     public function numberOfLikes()
     {
       return Like::where('image_id','=',$this->id)->count();
@@ -39,5 +40,11 @@ class Image extends Model
         } else { 
             return '';
         }
+    }
+    
+    public function getUsername()
+    {
+        $name = User::where('id','=',$this->user_id)->firstOrFail()->name;
+        return $name;
     }
 }

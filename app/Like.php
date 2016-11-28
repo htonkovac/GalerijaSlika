@@ -11,4 +11,5 @@ class Like extends Model
     protected $fillable=[
     'user_id','image_id'
     ];
+    
 }
